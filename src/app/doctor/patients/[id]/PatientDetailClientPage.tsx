@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -10,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { AlertTriangle, BedDouble, CalendarClock, FileText, Gage, HeartPulse, Info, User, Users } from "lucide-react";
+import { AlertTriangle, BedDouble, CalendarClock, FileText, HeartPulse, User } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import { PatientNotesSummarizer } from "@/components/doctor/PatientNotesSummarizer";
 import { DiagnosisUpdateForm } from "@/components/doctor/DiagnosisUpdateForm";
@@ -78,7 +79,7 @@ export default function PatientDetailClientPage({ patient: initialPatient }: Pat
             <InfoItem icon={<User className="h-4 w-4 text-primary" />} label="Date of Birth" value={format(parseISO(patient.dateOfBirth), "PP")} />
             <InfoItem icon={<CalendarClock className="h-4 w-4 text-primary" />} label="Admission Date" value={format(parseISO(patient.admissionDate), "PP")} />
             <InfoItem icon={<BedDouble className="h-4 w-4 text-primary" />} label="Room" value={patient.roomNumber || "N/A"} />
-            <InfoItem icon={<Gage className="h-4 w-4 text-primary" />} label="Urgency" value={<Badge variant={patient.urgency === 'High' ? 'destructive' : patient.urgency === 'Medium' ? 'secondary' : 'outline'}>{patient.urgency}</Badge>} />
+            <InfoItem icon={<AlertTriangle className="h-4 w-4 text-primary" />} label="Urgency" value={<Badge variant={patient.urgency === 'High' ? 'destructive' : patient.urgency === 'Medium' ? 'secondary' : 'outline'}>{patient.urgency}</Badge>} />
           </CardContent>
         </Card>
 
