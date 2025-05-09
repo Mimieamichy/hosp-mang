@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/PageHeader";
-import { mockAppointments, mockPatients }_ from "@/lib/data"; // Assuming mockPatients has the current patient
+import { mockAppointments, mockPatients } from "@/lib/data"; // Assuming mockPatients has the current patient
 import PatientAppointmentsClientPage from "./PatientAppointmentsClientPage";
 
 export default function PatientAppointmentsPage() {
@@ -18,3 +18,4 @@ export default function PatientAppointmentsPage() {
     </div>
   );
 }
+

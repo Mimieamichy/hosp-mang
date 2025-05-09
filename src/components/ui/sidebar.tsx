@@ -3,7 +3,8 @@
 
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
-import { VariantProps, cva } from "class-variance-authority"
+import type { VariantProps} from "class-variance-authority";
+import { cva } from "class-variance-authority"
 import { PanelLeft } from "lucide-react"
 
 import { useIsMobile } from "@/hooks/use-mobile"
@@ -401,16 +402,36 @@ const SidebarContent = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement> & { asChild?: boolean }
 >(({ className, asChild = false, ...props }, ref) => {
   const Comp = asChild ? Slot : "div"
+  const { children, ...rest } = props; // Destructure to separate children
+
+  if (asChild) {
+    return (
+      <Slot
+        ref={ref}
+        data-sidebar="content"
+        className={cn(
+          "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
+          className
+        )}
+        {...rest}
+      >
+        {children}
+      </Slot>
+    );
+  }
+
   return (
-    <Comp
+    <div
       ref={ref}
       data-sidebar="content"
       className={cn(
         "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
         className
       )}
-      {...props}
-    />
+      {...rest}
+    >
+      {children}
+    </div>
   )
 })
 SidebarContent.displayName = "SidebarContent"
